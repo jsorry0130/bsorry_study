@@ -27,12 +27,11 @@ def solution(people, limit):
     tail = -1
     answer = 0
 
-    while len(people) + tail != 0:
+    while len(people) + tail > 0:
         if people[idx] + people[tail] <= limit:
             del people[idx]
             del people[tail]
             answer +=1
-            tail = -1
             print("2명 탑승!", answer, "번째 구출 성공! 남은사람들 ", people)
         else:
             tail -= 1
@@ -43,6 +42,7 @@ def solution(people, limit):
 
     print(answer)
     return answer
+
 '''
 people = [70, 50, 80, 60, 10, 40, 60, 70, 70, 50]
 
