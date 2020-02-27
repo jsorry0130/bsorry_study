@@ -18,27 +18,31 @@
     구명보트의 무게 제한은 40kg 이상 240kg 이하입니다.
     구명보트의 무게 제한은 항상 사람들의 몸무게 중 최댓값보다 크게 주어지므로 사람들을 구출할 수 없는 경우는 없습니다.
 '''
-# 효율성 테스트 실패
+
 
 def solution(people, limit):
 
     people.sort()
     idx = 0
-    tail = -1
     answer = 0
+    end = len(people) -1 #리스트의 마지막 인덱스
 
-    while len(people) + tail > 0:
-        if people[idx] + people[tail] <= limit:
-            del people[idx]
-            del people[tail]
-            answer +=1
-            print("2명 탑승!", answer, "번째 구출 성공! 남은사람들 ", people)
+    #맨 앞 인덱스와 맨 뒤 인덱스를 더하여 limit 보다 낮은지 탐색
+    #맨 앞 인덱스는 제일 가벼울테니 굳이 증가시키지 않고
+    #맨 뒤 인덱스만 감소시키며 탐색
+
+    while end > idx: #맨 앞 인덱스와 맨 뒤 인덱스가 교차하는 순간 까지
+        if people[idx] + people[end] <= limit:
+            answer +=1 #구출 카운트 증가
+            idx += 1 #맨 앞 인덱스 증가
+            end -=1 #맨 뒤 인덱스 감소
+            print("2명 탑승!", answer, "번째 구출 성공!")
         else:
-            tail -= 1
-            print("몸무게 초과 ! 탑승 실패! 남은사람들", people)
+            end -=1 #맨 뒤 인덱스 감소
+            print("몸무게 초과 ! 탑승 실패! 남은사람들")
 
 
-    answer += len(people)
+    answer += (len(people) - answer*2) #구명보트로 2명식 구출한 횟수 + 남은 사람은 1명씩 구출한 횟수
 
     print(answer)
     return answer
