@@ -33,12 +33,12 @@ def solution(people, limit):
 
     while end > idx: #맨 앞 인덱스와 맨 뒤 인덱스가 교차하는 순간 까지
         if people[idx] + people[end] <= limit:
-            answer +=1 #구출 카운트 증가
+            answer += 1 #구출 카운트 증가
             idx += 1 #맨 앞 인덱스 증가
-            end -=1 #맨 뒤 인덱스 감소
+            end -= 1 #맨 뒤 인덱스 감소
             print("2명 탑승!", answer, "번째 구출 성공!")
         else:
-            end -=1 #맨 뒤 인덱스 감소
+            end -= 1 #맨 뒤 인덱스 감소
             print("몸무게 초과 ! 탑승 실패! 남은사람들")
 
 
@@ -47,10 +47,9 @@ def solution(people, limit):
     print(answer)
     return answer
 
-'''
+
 people = [70, 50, 80, 60, 10, 40, 60, 70, 70, 50]
 
 limit = 100
 
 solution(people,limit)
-'''
